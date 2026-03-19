@@ -13,7 +13,6 @@ jobs:
           - authenticationservice
           - configservice
           - couponservice
-          - Healthservice
           - kitchenOrderservice
           - menuservice
           - mqttservice
