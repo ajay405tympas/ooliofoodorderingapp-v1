@@ -1,0 +1,20 @@
+@startuml
+title Oolio Food Ordering App SellingService
+
+actor Customer
+participant "POS Service" as POS
+participant "Payment Service" as Payment
+participant "Menu & Inventory Service" as Menu
+participant "Order Service" as Order
+participant "Mobile App" as MobileUI
+Participant "Notification Service" as Notification
+
+
+== item Selection ==
+Order -> POS: Process Order
+POS -> POS : update t-log
+POS -> Payment : Initiate payment.
+Payment -> Notification : Initiate payment on Mobile UI
+Notification -> MobileUI : Initiate payment on Mobile UI
+
+@enduml

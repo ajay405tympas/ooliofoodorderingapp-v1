@@ -1,0 +1,29 @@
+@startuml
+title Oolio Food Ordering App Payment
+
+actor Customer
+participant "POS Service" as POS
+participant "Paymentscreen" as PaymentUI
+participant "Payment Service" as Payment
+participant "KOT Service" as KOT
+participant "Mobile App" as MobileUI
+Participant "Notification Service" as Notification
+
+
+
+== item Selection ==
+Payment -> Notification : Initiate payment on Mobile UI
+Notification -> MobileUI : Initiate payment on Mobile UI
+Customer -> PaymentUI : enter Card/coupon/cash Details
+PaymentUI -> PaymentUI : completes the payment by connecting to bankkserver.
+PaymentUI -> Payment : confirms payment
+Payment -> POS : Paymentcompleted.
+POS -> KOT  :  send order to kitchen.
+POS-> Notification : Payment confirmed.
+Notification -> MobileUI : Payment confirms
+POS->DeviceServer : prints receipt
+
+
+
+
+@enduml

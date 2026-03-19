@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./infra/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: coupons
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
+  coupon-service:
+    build: .
+    depends_on:
+      - mosquitto
+      - postgres
+    environment:
+      MQTT_BROKER: tcp://mosquitto:1883
+      MQTT_SUB_TOPIC: pos/apply-coupon
+      MQTT_PUB_TOPIC: pos/coupon-response
+      MQTT_NOTIFY_TOPIC: notification/coupon-invalid
+      DB_DSN: postgres://postgres:postgres@postgres:5432/coupons?sslmode=disable
+      LOG_LEVEL: info
+      PORT: 8080
+    ports:
+      - "8080:8080"

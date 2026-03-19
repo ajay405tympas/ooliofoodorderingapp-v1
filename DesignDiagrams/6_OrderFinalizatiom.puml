@@ -1,0 +1,25 @@
+@startuml
+title Oolio Food Ordering App Payment
+
+actor Customer
+participant "POS Service" as POS
+participant "Paymentscreen" as PaymentUI
+participant "Payment Service" as Payment
+participant "KOT Service" as KOT
+participant "Mobile App" as MobileUI
+Participant "Notification Service" as Notification
+Participant "Report service" as Report
+
+
+
+== item Selection ==
+POS -> KOT  :  send order to kitchen.
+KOT -> POS : Order Done
+POS->Notification  : Order ready for Pickup/deliver/Dinein
+POS->Report : clear the session, update database and other fields
+Notification -> MobileUI : enter Card/coupon/cash Details
+MobileUI -> Customer: Order Completed 
+
+
+
+@enduml

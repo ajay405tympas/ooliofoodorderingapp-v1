@@ -1,0 +1,23 @@
+@startuml
+title Oolio Food Ordering App Item Selection
+
+actor Customer
+participant "Mobile App" as MobileUI
+participant "Menu & Inverntory Servivce" as Menu
+participant "Order Service" as Order
+participant "Pos Service" as POS
+
+
+== item Selection ==
+Customer -> MobileUI : Select menu 
+MobileUI -> Menu : Request sent to Menu service {\nhttps://oolia.web.foodorderapp/menu}
+Menu-> MobileUI : Response to Menu 
+
+
+Customer -> MobileUI : Select & Add items to cart
+Customer -> MobileUI: Checkout
+MobileUI -> Order : validate order & finalize order {\nhttps://oolia.web.foodorderapp/order}
+Order -> POS: Process Order
+
+
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+title Oolio Food Ordering App Autheticiation
+
+actor Customer
+participant "Mobile App" as Mobile
+participant "Authentication Service" as Authentication
+participant "Message Gateway" as MessageGateway
+participant "Notification Service" as Notification
+participant "Home Page" as Home
+
+== Login to Server ==
+Customer -> Mobile : Enter Phonenumber 
+Mobile -> Authentication : Send Phone number {https://oolia.web.foodorderapp/login}
+Authentication -->MessageGateway  : Send OTP
+
+== Login Server to Client side ==
+Customer -> Mobile : Enter OTP
+Mobile->Authentication: Validate OTP
+Authentication -> Notification: Login Success
+Notification -> Mobile: Login Successful, bearertoken
+customer->Home: Home page
+
+@enduml

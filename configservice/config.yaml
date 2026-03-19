@@ -1,0 +1,13 @@
+stores:
+  - storeId: "store-1"
+    name: "Oolia Food Order"
+    tax: 5
+    currency: "INR"
+
+redis:
+  host: "localhost"
+  port: 6379
+
+mqtt:
+  broker: "tcp://localhost:1883"
+  topicResponse: "config/response"
