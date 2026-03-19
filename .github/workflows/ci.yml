@@ -10,19 +10,19 @@ jobs:
     strategy:
       matrix:
         service:
-          - authenticationService
-          - configService
-          - couponService
-          - HealthService
-          - kitchenOrderService
-          - menuService
-          - mqttService
-          - orderService
-          - outBoundService
-          - paymentService
-          - redisService
-          - sellingSerivice
-          - UIservice
+          - authenticationservice
+          - configservice
+          - couponservice
+          - Healthservice
+          - kitchenOrderservice
+          - menuservice
+          - mqttservice
+          - orderservice
+          - outboundservice
+          - paymentservice
+          - redisservice
+          - sellingserivice
+          - uiservice
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
